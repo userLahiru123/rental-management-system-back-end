@@ -19,6 +19,12 @@ public class ItemServiceImpl implements ItemService {
     private final ObjectMapper mapper;
 
     @Override
+    public Item updateItemById(Item item) {
+        ItemEntity save = itemRepository.save(mapper.convertValue(item, ItemEntity.class));
+        return mapper.convertValue(save,Item.class);
+    }
+
+    @Override
     public Item persist(Item item) {
         ItemEntity save = itemRepository.save(mapper.convertValue(item, ItemEntity.class));
         return mapper.convertValue(save, Item.class);

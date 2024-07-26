@@ -28,4 +28,9 @@ public class ItemController {
         itemService.deleteItemById(id);
     }
 
+    @PatchMapping("/update-item-by-id/")
+    Item updateItemById(@RequestBody Item item){
+        return itemService.updateItemById(item);
+    }
+
 }
