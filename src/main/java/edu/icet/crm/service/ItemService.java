@@ -7,4 +7,6 @@ public interface ItemService {
     Item persist(Item item);
 
     Item getItem(long id);
+
+    void deleteItemById(Long id);
 }
