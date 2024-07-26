@@ -8,7 +8,7 @@ public interface ItemService {
 
     Item getItem(long id);
 
-    void deleteItemById(Long id);
+    boolean deleteItemById(Long id);
 
     Item updateItemById(Item item);
 }

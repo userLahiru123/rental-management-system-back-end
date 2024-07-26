@@ -2,7 +2,6 @@ package edu.icet.crm.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.icet.crm.entity.ItemEntity;
-import edu.icet.crm.exception.ItemNotFoundException;
 import edu.icet.crm.model.Item;
 import edu.icet.crm.repository.ItemRepository;
 import edu.icet.crm.service.ItemService;
@@ -32,16 +31,19 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public Item getItem(long id) {
-        Optional<ItemEntity> byId = itemRepository.findById(id);
-        if(byId.isPresent()){
+        if(itemRepository.existsById(id)){
+            Optional<ItemEntity> byId = itemRepository.findById(id);
             return mapper.convertValue(byId.get(), Item.class);
-        }else {
-            throw new ItemNotFoundException("Item Not Found");
         }
+        return null;
     }
 
     @Override
-    public void deleteItemById(Long id) {
-        itemRepository.deleteById(id);
+    public boolean deleteItemById(Long id) {
+        if(itemRepository.existsById(id)){
+            itemRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }
