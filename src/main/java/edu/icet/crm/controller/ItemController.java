@@ -23,12 +23,12 @@ public class ItemController {
         return itemService.getItem(id);
     }
 
-    @DeleteMapping("/item-delete-by-id/{id}")
+    @DeleteMapping("/delete-by-id/{id}")
     boolean deleteItemById(@PathVariable Long id){
         return itemService.deleteItemById(id);
     }
 
-    @PatchMapping("/update-item-by-id/")
+    @PatchMapping("/update-by-id/")
     Item updateItemById(@RequestBody Item item){
         return itemService.updateItemById(item);
     }

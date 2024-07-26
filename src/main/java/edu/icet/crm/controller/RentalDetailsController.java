@@ -1,27 +1,27 @@
 package edu.icet.crm.controller;
 
-import edu.icet.crm.model.Item;
 import edu.icet.crm.model.Rental;
-import edu.icet.crm.service.ItemService;
+import edu.icet.crm.model.RentalDetails;
+import edu.icet.crm.service.RentalDetailsService;
 import edu.icet.crm.service.RentalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/rental")
+@RequestMapping("/rental-details")
 @CrossOrigin
 @RequiredArgsConstructor
-public class RentalController {
+public class RentalDetailsController {
 
-    private final RentalService rentalService;
+    private final RentalDetailsService rentalService;
 
     @PostMapping()
-    Rental persist(@RequestBody Rental rental){
+    RentalDetails persist(@RequestBody RentalDetails rental){
         return rentalService.persist(rental);
     }
 
     @GetMapping("/{id}")
-    Rental getRental(@PathVariable long id){
+    RentalDetails getRental(@PathVariable long id){
         return rentalService.get(id);
     }
 
@@ -31,7 +31,7 @@ public class RentalController {
     }
 
     @PatchMapping("/update-by-id/")
-    Rental updateRentalById(@RequestBody Rental rental){
+    RentalDetails updateRentalById(@RequestBody RentalDetails rental){
         return rentalService.updateById(rental);
     }
 
